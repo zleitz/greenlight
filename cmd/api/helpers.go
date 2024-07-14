@@ -28,6 +28,7 @@ func (app *application) writeJSON(w http.ResponseWriter, status int, data any, h
 
 	js = append(js, '\n')
 
+	// Write extra headers passed into func
 	for key, value := range headers {
 		w.Header()[key] = value
 	}
