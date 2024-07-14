@@ -19,7 +19,7 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	movie := &data.Movie{
+	movie := data.Movie{
 		ID:        id,
 		CreatedAt: time.Now(),
 		Title:     "Casablanca",
@@ -28,7 +28,7 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request)
 		Version:   1,
 	}
 
-	err = app.writeJSON(w, http.StatusOK, movie, nil)
+	err = app.writeJSON(w, http.StatusOK, envelope{"movie": movie}, nil)
 	if err != nil {
 		app.logger.Error(err.Error())
 		http.Error(w, "The server encountered a proble and could not process your request", http.StatusInternalServerError)
